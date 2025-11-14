@@ -7,6 +7,7 @@ import { useTheme } from './ThemeContext';
 import { useLanguage, availableLanguages } from './LanguageContext';
 import type { Language } from '../locales';
 import { motion } from 'motion/react';
+import { Card } from './ui/card';
 
 export function HomeAIHeader() {
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
@@ -53,7 +54,7 @@ export function HomeAIHeader() {
         initial={{ x: -200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.5 }}
-        className="hidden xl:block absolute left-8 top-2 z-10"
+        className="absolute left-2 sm:left-4 md:left-6 lg:left-8 top-2 z-10"
       >
         <motion.div
           whileHover={{ scale: 1.03, x: 5 }}
@@ -70,37 +71,37 @@ export function HomeAIHeader() {
           />
           
           {/* Banner Card */}
-          <div className="relative w-40 sm:w-44 md:w-48 lg:w-52 xl:w-56 bg-gradient-to-br from-emerald-900/95 via-teal-900/95 to-cyan-900/95 dark:from-emerald-900/95 dark:via-teal-900/95 dark:to-cyan-900/95 light:from-emerald-50 light:via-teal-50 light:to-cyan-50 backdrop-blur-md rounded-xl p-2 sm:p-2.5 md:p-3 border border-emerald-500/40 dark:border-emerald-500/40 light:border-emerald-300 shadow-xl overflow-hidden">
+          <div className="relative w-28 xs:w-32 sm:w-36 md:w-40 lg:w-48 xl:w-56 bg-gradient-to-br from-emerald-900/95 via-teal-900/95 to-cyan-900/95 dark:from-emerald-900/95 dark:via-teal-900/95 dark:to-cyan-900/95 light:from-emerald-50 light:via-teal-50 light:to-cyan-50 backdrop-blur-md rounded-xl p-1.5 sm:p-2 md:p-2.5 lg:p-3 border border-emerald-500/40 dark:border-emerald-500/40 light:border-emerald-300 shadow-xl overflow-hidden">
             {/* Icon with Animation */}
-            <div className="flex items-center gap-2 mb-1.5">
+            <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2 mb-1 sm:mb-1.5">
               <motion.div
-                className="relative"
+                className="relative flex-shrink-0"
                 animate={{
                   rotate: [0, 360],
                 }}
                 transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
               >
-                <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-500 dark:from-emerald-500 dark:to-teal-500 light:from-emerald-400 light:to-teal-400 rounded-lg flex items-center justify-center shadow-lg relative">
+                <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-gradient-to-br from-emerald-500 to-teal-500 dark:from-emerald-500 dark:to-teal-500 light:from-emerald-400 light:to-teal-400 rounded-lg flex items-center justify-center shadow-lg relative">
                   <motion.div
                     className="absolute inset-0 bg-white/20 rounded-lg"
                     animate={{ opacity: [0, 0.5, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   />
-                  <GitBranch className="text-white" size={16} />
+                  <GitBranch className="text-white" size={12} />
                 </div>
               </motion.div>
               
-              <div className="flex-1">
-                <h3 className="text-white dark:text-white light:text-emerald-900 text-sm" style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 700 }}>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-white dark:text-white light:text-emerald-900 text-[10px] sm:text-xs md:text-sm truncate" style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 700 }}>
                   {t('banner.family.title')}
                 </h3>
                 <motion.div
-                  className="flex items-center gap-1"
+                  className="flex items-center gap-0.5 sm:gap-1"
                   animate={{ x: [0, 3, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                 >
-                  <Zap className="text-emerald-400 dark:text-emerald-400 light:text-emerald-600" size={10} />
-                  <span className="text-emerald-300 dark:text-emerald-300 light:text-emerald-600 text-[10px]">{t('banner.family.tagline')}</span>
+                  <Zap className="text-emerald-400 dark:text-emerald-400 light:text-emerald-600" size={8} />
+                  <span className="text-emerald-300 dark:text-emerald-300 light:text-emerald-600 text-[8px] sm:text-[9px] md:text-[10px] truncate">{t('banner.family.tagline')}</span>
                 </motion.div>
               </div>
             </div>
@@ -109,16 +110,16 @@ export function HomeAIHeader() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 dark:from-emerald-500 dark:to-teal-500 light:from-emerald-600 light:to-teal-600 text-white py-1.5 rounded-lg flex items-center justify-center gap-1.5 shadow-lg"
+              className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 dark:from-emerald-500 dark:to-teal-500 light:from-emerald-600 light:to-teal-600 text-white py-1 sm:py-1.5 rounded-lg flex items-center justify-center gap-1 sm:gap-1.5 shadow-lg"
             >
-              <span className="text-xs" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600 }}>
+              <span className="text-[9px] sm:text-[10px] md:text-xs" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600 }}>
                 {t('banner.common.explore')}
               </span>
               <motion.div
                 animate={{ x: [0, 2, 0] }}
                 transition={{ duration: 1, repeat: Infinity }}
               >
-                <ArrowRight size={12} />
+                <ArrowRight size={10} />
               </motion.div>
             </motion.button>
 
@@ -151,7 +152,7 @@ export function HomeAIHeader() {
         initial={{ x: 200, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.5 }}
-        className="hidden xl:block absolute right-8 top-2 z-10"
+        className="absolute right-2 sm:right-4 md:right-6 lg:right-8 top-2 z-10"
       >
         <motion.div
           whileHover={{ scale: 1.03, x: -5 }}
@@ -168,17 +169,17 @@ export function HomeAIHeader() {
           />
           
           {/* Banner Card */}
-          <div className="relative w-48 bg-gradient-to-br from-rose-900/95 via-pink-900/95 to-red-900/95 dark:from-rose-900/95 dark:via-pink-900/95 dark:to-red-900/95 light:from-rose-50 light:via-pink-50 light:to-red-50 backdrop-blur-md rounded-xl p-2.5 border border-rose-500/40 dark:border-rose-500/40 light:border-rose-300 shadow-xl overflow-hidden">
+          <div className="relative w-28 xs:w-32 sm:w-36 md:w-40 lg:w-48 xl:w-56 bg-gradient-to-br from-rose-900/95 via-pink-900/95 to-red-900/95 dark:from-rose-900/95 dark:via-pink-900/95 dark:to-red-900/95 light:from-rose-50 light:via-pink-50 light:to-red-50 backdrop-blur-md rounded-xl p-1.5 sm:p-2 md:p-2.5 lg:p-3 border border-rose-500/40 dark:border-rose-500/40 light:border-rose-300 shadow-xl overflow-hidden">
             {/* Icon with Animation */}
-            <div className="flex items-center gap-2 mb-1.5">
+            <div className="flex items-center gap-1 sm:gap-1.5 md:gap-2 mb-1 sm:mb-1.5">
               <motion.div
-                className="relative"
+                className="relative flex-shrink-0"
                 animate={{
                   scale: [1, 1.1, 1],
                 }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               >
-                <div className="w-8 h-8 bg-gradient-to-br from-rose-500 to-pink-500 dark:from-rose-500 dark:to-pink-500 light:from-rose-400 light:to-pink-400 rounded-lg flex items-center justify-center shadow-lg relative">
+                <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 bg-gradient-to-br from-rose-500 to-pink-500 dark:from-rose-500 dark:to-pink-500 light:from-rose-400 light:to-pink-400 rounded-lg flex items-center justify-center shadow-lg relative">
                   <motion.div
                     className="absolute inset-0 bg-white/20 rounded-lg"
                     animate={{ opacity: [0, 0.5, 0] }}
@@ -188,22 +189,22 @@ export function HomeAIHeader() {
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 1, repeat: Infinity }}
                   >
-                    <Heart className="text-white" size={16} fill="currentColor" />
+                    <Heart className="text-white" size={12} fill="currentColor" />
                   </motion.div>
                 </div>
               </motion.div>
               
-              <div className="flex-1">
-                <h3 className="text-white dark:text-white light:text-rose-900 text-sm" style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 700 }}>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-white dark:text-white light:text-rose-900 text-[10px] sm:text-xs md:text-sm truncate" style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 700 }}>
                   {t('banner.health.title')}
                 </h3>
                 <motion.div
-                  className="flex items-center gap-1"
+                  className="flex items-center gap-0.5 sm:gap-1"
                   animate={{ x: [0, 3, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                 >
-                  <Activity className="text-rose-400 dark:text-rose-400 light:text-rose-600" size={10} />
-                  <span className="text-rose-300 dark:text-rose-300 light:text-rose-600 text-[10px]">{t('banner.health.tagline')}</span>
+                  <Activity className="text-rose-400 dark:text-rose-400 light:text-rose-600" size={8} />
+                  <span className="text-rose-300 dark:text-rose-300 light:text-rose-600 text-[8px] sm:text-[9px] md:text-[10px] truncate">{t('banner.health.tagline')}</span>
                 </motion.div>
               </div>
             </div>
@@ -212,16 +213,16 @@ export function HomeAIHeader() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full bg-gradient-to-r from-rose-500 to-pink-500 dark:from-rose-500 dark:to-pink-500 light:from-rose-600 light:to-pink-600 text-white py-1.5 rounded-lg flex items-center justify-center gap-1.5 shadow-lg"
+              className="w-full bg-gradient-to-r from-rose-500 to-pink-500 dark:from-rose-500 dark:to-pink-500 light:from-rose-600 light:to-pink-600 text-white py-1 sm:py-1.5 rounded-lg flex items-center justify-center gap-1 sm:gap-1.5 shadow-lg"
             >
-              <span className="text-xs" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600 }}>
+              <span className="text-[9px] sm:text-[10px] md:text-xs" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600 }}>
                 {t('banner.common.explore')}
               </span>
               <motion.div
                 animate={{ x: [0, 2, 0] }}
                 transition={{ duration: 1, repeat: Infinity }}
               >
-                <ArrowRight size={12} />
+                <ArrowRight size={10} />
               </motion.div>
             </motion.button>
 
@@ -290,9 +291,9 @@ export function HomeAIHeader() {
         ))}
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative pt-16 sm:pt-12 md:pt-8 lg:pt-4">
         {/* Welcome Title with Tech Animation */}
-        <div className="pt-4 pb-4 text-center">
+        <div className="pt-4 pb-4 text-center px-20 sm:px-24 md:px-28 lg:px-0">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -370,79 +371,85 @@ export function HomeAIHeader() {
         </div>
 
         {/* Navigation */}
-        <nav className="flex flex-wrap items-center justify-center gap-2 md:gap-3 py-3 border-t border-gray-800/30 dark:border-gray-800/30 light:border-blue-100/50">
+        <nav className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 md:gap-3 py-2 sm:py-3 border-t border-gray-800/30 dark:border-gray-800/30 light:border-blue-100/50">
           {/* Logo in Navigation */}
           <motion.div 
             whileHover={{ scale: 1.05 }}
-            className="flex items-center gap-2 mr-2"
+            className="flex items-center gap-1.5 sm:gap-2 mr-1 sm:mr-2"
           >
             <motion.div 
-              className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg shadow-purple-500/40 border-2 border-white/20 relative overflow-hidden"
+              className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg shadow-purple-500/40 border-2 border-white/20 relative overflow-hidden"
               whileHover={{ scale: 1.1, rotate: 360 }}
               transition={{ duration: 0.5 }}
             >
               <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/20 to-white/0 opacity-50"></div>
-              <span className="relative text-white text-[7px] sm:text-[8px] tracking-tighter leading-none text-center whitespace-nowrap px-0.5">
+              <span className="relative text-white text-[6px] sm:text-[7px] md:text-[8px] tracking-tighter leading-none text-center whitespace-nowrap px-0.5">
                 HOME.AI
               </span>
             </motion.div>
-            <span className="text-base sm:text-lg text-white dark:text-white light:bg-gradient-to-r light:from-blue-600 light:to-teal-500 light:bg-clip-text light:text-transparent" style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 600 }}>HOME.AI</span>
+            <span className="text-sm sm:text-base md:text-lg text-black dark:text-white" style={{ fontFamily: "'Orbitron', sans-serif", fontWeight: 600 }}>HOME.AI</span>
           </motion.div>
 
           {/* Vertical Divider */}
-          <div className="h-6 w-px bg-gray-700 dark:bg-gray-700 light:bg-blue-200" />
+          <div className="h-5 sm:h-6 w-px bg-gray-700 dark:bg-gray-700 light:bg-blue-200" />
           
-          <motion.button
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsMissionOpen(true)}
-            className="text-sm text-gray-300 hover:text-white dark:text-gray-300 dark:hover:text-white light:text-white light:bg-gradient-to-r light:from-blue-600 light:to-teal-500 light:px-2.5 light:py-1.5 light:rounded-lg light:shadow-md light:hover:shadow-lg transition-all relative group"
-          >
-            {t('nav.mission')}
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-teal-400 light:hidden group-hover:w-full transition-all duration-300" />
-          </motion.button>
-          
-          <motion.button
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsCoreValuesOpen(true)}
-            className="text-sm text-gray-300 hover:text-white dark:text-gray-300 dark:hover:text-white light:text-white light:bg-gradient-to-r light:from-blue-600 light:to-teal-500 light:px-2.5 light:py-1.5 light:rounded-lg light:shadow-md light:hover:shadow-lg transition-all relative group"
-          >
-            {t('nav.coreValues')}
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-teal-400 light:hidden group-hover:w-full transition-all duration-300" />
-          </motion.button>
-          
-          <motion.a
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            href="#"
-            className="text-sm text-gray-300 hover:text-white dark:text-gray-300 dark:hover:text-white light:text-white light:bg-gradient-to-r light:from-blue-600 light:to-teal-500 light:px-2.5 light:py-1.5 light:rounded-lg light:shadow-md light:hover:shadow-lg transition-all relative group"
-          >
-            {t('nav.support')}
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-teal-400 light:hidden group-hover:w-full transition-all duration-300" />
-          </motion.a>
-          
-          <motion.button
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsLoginOpen(true)}
-            className="text-sm text-gray-300 hover:text-white dark:text-gray-300 dark:hover:text-white light:text-white light:bg-gradient-to-r light:from-blue-600 light:to-teal-500 light:px-2.5 light:py-1.5 light:rounded-lg light:shadow-md light:hover:shadow-lg transition-all relative group"
-          >
-            {t('nav.login')}
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-teal-400 light:hidden group-hover:w-full transition-all duration-300" />
-          </motion.button>
-          
-          {/* Theme Dropdown */}
-          <div className="relative">
+          <Card className="bg-blue-600 dark:bg-blue-600 border-blue-500 p-0 overflow-hidden">
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setIsThemeOpen(!isThemeOpen)}
-              className="text-sm text-gray-300 hover:text-white dark:text-gray-300 dark:hover:text-white light:text-white light:bg-gradient-to-r light:from-blue-600 light:to-teal-500 light:px-2.5 light:py-1.5 light:rounded-lg light:shadow-md light:hover:shadow-lg transition-all flex items-center gap-1"
+              onClick={() => setIsMissionOpen(true)}
+              className="text-xs sm:text-sm text-white px-2 sm:px-3 py-1 sm:py-1.5 transition-all relative group w-full"
             >
-              {theme === 'dark' ? <Moon size={16} /> : <Sun size={16} />}
-              <ChevronDown size={14} className={`transition-transform ${isThemeOpen ? 'rotate-180' : ''}`} />
+              {t('nav.mission')}
             </motion.button>
+          </Card>
+          
+          <Card className="bg-blue-600 dark:bg-blue-600 border-blue-500 p-0 overflow-hidden">
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsCoreValuesOpen(true)}
+              className="text-xs sm:text-sm text-white px-2 sm:px-3 py-1 sm:py-1.5 transition-all relative group w-full"
+            >
+              {t('nav.coreValues')}
+            </motion.button>
+          </Card>
+          
+          <Card className="bg-blue-600 dark:bg-blue-600 border-blue-500 p-0 overflow-hidden">
+            <motion.a
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              href="#"
+              className="text-xs sm:text-sm text-white px-2 sm:px-3 py-1 sm:py-1.5 transition-all relative group block w-full"
+            >
+              {t('nav.support')}
+            </motion.a>
+          </Card>
+          
+          <Card className="bg-blue-600 dark:bg-blue-600 border-blue-500 p-0 overflow-hidden">
+            <motion.button
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setIsLoginOpen(true)}
+              className="text-xs sm:text-sm text-white px-2 sm:px-3 py-1 sm:py-1.5 transition-all relative group w-full"
+            >
+              {t('nav.login')}
+            </motion.button>
+          </Card>
+          
+          {/* Theme Dropdown */}
+          <div className="relative">
+            <Card className="bg-blue-600 dark:bg-blue-600 border-blue-500 p-0 overflow-hidden">
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsThemeOpen(!isThemeOpen)}
+                className="text-xs sm:text-sm text-white px-2 sm:px-3 py-1 sm:py-1.5 transition-all flex items-center gap-1 w-full"
+              >
+                {theme === 'dark' ? <Moon size={14} /> : <Sun size={14} />}
+                <ChevronDown size={12} className={`transition-transform ${isThemeOpen ? 'rotate-180' : ''}`} />
+              </motion.button>
+            </Card>
             
             {isThemeOpen && (
               <>
@@ -483,15 +490,17 @@ export function HomeAIHeader() {
 
           {/* Language Dropdown */}
           <div className="relative">
-            <motion.button
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-              className="text-sm text-gray-300 hover:text-white dark:text-gray-300 dark:hover:text-white light:text-white light:bg-gradient-to-r light:from-blue-600 light:to-teal-500 light:px-2.5 light:py-1.5 light:rounded-lg light:shadow-md light:hover:shadow-lg transition-all flex items-center gap-1"
-            >
-              {t('nav.language')}
-              <ChevronDown size={14} className={`transition-transform ${isLanguageOpen ? 'rotate-180' : ''}`} />
-            </motion.button>
+            <Card className="bg-blue-600 dark:bg-blue-600 border-blue-500 p-0 overflow-hidden">
+              <motion.button
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+                className="text-xs sm:text-sm text-white px-2 sm:px-3 py-1 sm:py-1.5 transition-all flex items-center gap-1 w-full"
+              >
+                {t('nav.language')}
+                <ChevronDown size={12} className={`transition-transform ${isLanguageOpen ? 'rotate-180' : ''}`} />
+              </motion.button>
+            </Card>
             {isLanguageOpen && (
               <>
                 <div

@@ -147,56 +147,60 @@ export function BuildingManagementIntro() {
           <div className="lg:col-span-6">
             <div className="bg-white dark:bg-white light:bg-white border border-white/10 dark:border-white/10 light:border-gray-200 rounded-xl overflow-hidden shadow-xl">
               <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr
-                      className="border-b border-white/10 dark:border-white/10 light:border-gray-200"
-                      style={{
-                        background:
-                          'linear-gradient(90deg, rgba(199,210,254,0.75), rgba(165,180,252,0.9))',
-                      }}
-                    >
-                      <th className="px-6 py-4 text-left text-gray-900 whitespace-nowrap">{t('table.icon')}</th>
-                      <th className="px-6 py-4 text-left text-gray-900 whitespace-nowrap">{t('table.feature')}</th>
-                      <th className="px-6 py-4 text-left text-gray-900">{t('table.description')}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {features.map((feature, index) => {
-                      const Icon = feature.icon;
-                      return (
-                        <motion.tr
-                          key={index}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.1 * index, duration: 0.3 }}
-                          className="border-b border-white/5 dark:border-white/5 light:border-gray-100 hover:bg-gray-50 dark:hover:bg-gray-100 light:hover:bg-gray-50 transition-colors duration-200"
+                <div className="inline-block min-w-full align-middle">
+                  <div className="overflow-hidden">
+                    <table className="min-w-full divide-y divide-gray-200">
+                      <thead>
+                        <tr
+                          className="border-b border-white/10 dark:border-white/10 light:border-gray-200"
+                          style={{
+                            background:
+                              'linear-gradient(90deg, rgba(199,210,254,0.75), rgba(165,180,252,0.9))',
+                          }}
                         >
-                          {/* Column 1: Icon */}
-                          <td className="px-3 py-2 w-16">
-                            <div className={`w-8 h-8 ${feature.bgColor} ${feature.lightBgColor} rounded-lg flex items-center justify-center`}>
-                              <Icon className={`${feature.iconColor} ${feature.lightIconColor}`} size={16} strokeWidth={2} />
-                            </div>
-                          </td>
+                          <th className="hidden md:table-cell px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-left text-gray-900 text-xs sm:text-sm whitespace-nowrap">{t('table.icon')}</th>
+                          <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-left text-gray-900 text-xs sm:text-sm whitespace-nowrap">{t('table.feature')}</th>
+                          <th className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-left text-gray-900 text-xs sm:text-sm">{t('table.description')}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {features.map((feature, index) => {
+                          const Icon = feature.icon;
+                          return (
+                            <motion.tr
+                              key={index}
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: 0.1 * index, duration: 0.3 }}
+                              className="border-b border-white/5 dark:border-white/5 light:border-gray-100 hover:bg-gray-50 dark:hover:bg-gray-100 light:hover:bg-gray-50 transition-colors duration-200"
+                            >
+                              {/* Column 1: Icon - Hidden on mobile */}
+                              <td className="hidden md:table-cell px-2 sm:px-3 md:px-4 py-2 sm:py-3 w-12 sm:w-16">
+                                <div className={`w-7 h-7 sm:w-8 sm:h-8 ${feature.bgColor} ${feature.lightBgColor} rounded-lg flex items-center justify-center`}>
+                                  <Icon className={`${feature.iconColor} ${feature.lightIconColor}`} size={14} strokeWidth={2} />
+                                </div>
+                              </td>
 
-                          {/* Column 2: Title */}
-                          <td className="px-3 py-2 w-48">
-                            <div className="text-gray-900 text-sm">
-                              {t(feature.titleKey)}
-                            </div>
-                          </td>
+                              {/* Column 2: Title - More space on mobile, no width restriction */}
+                              <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 min-w-[140px] md:min-w-[150px]">
+                                <div className="text-gray-900 text-xs sm:text-sm font-medium">
+                                  {t(feature.titleKey)}
+                                </div>
+                              </td>
 
-                          {/* Column 3: Description */}
-                          <td className="px-3 py-2">
-                            <p className="text-gray-700 text-xs leading-relaxed">
-                              {t(feature.descKey)}
-                            </p>
-                          </td>
-                        </motion.tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                              {/* Column 3: Description - More space on mobile */}
+                              <td className="px-3 sm:px-4 md:px-6 py-2 sm:py-3">
+                                <p className="text-gray-700 text-[10px] sm:text-xs leading-relaxed">
+                                  {t(feature.descKey)}
+                                </p>
+                              </td>
+                            </motion.tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

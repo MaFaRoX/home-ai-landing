@@ -133,10 +133,10 @@ export function CoreValuesModal({ isOpen, onClose }: CoreValuesModalProps) {
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent
         hideCloseButton
-        className="w-[100vw] h-[80vh] max-w-none bg-white text-black border-gray-200 p-0 overflow-hidden flex flex-col"
+        className="w-[95vw] h-[90vh] md:w-[85vw] md:h-[80vh] max-w-5xl bg-white text-black border-gray-200 p-0 overflow-hidden flex flex-col sm:max-w-5xl"
       >
         {/* Header */}
-        <div className="relative bg-white border-b border-gray-200 px-6 py-3 flex-shrink-0">
+        <div className="relative bg-white border-b border-gray-200 px-4 md:px-6 py-3 flex-shrink-0">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-black">
               <Sparkles className="text-teal-500" size={22} strokeWidth={1.8} />
@@ -148,31 +148,31 @@ export function CoreValuesModal({ isOpen, onClose }: CoreValuesModalProps) {
           </DialogHeader>
           
           {/* Admin Controls */}
-          <div className="absolute right-14 top-3 flex items-center gap-2">
+          <div className="absolute right-14 top-3 flex items-center gap-2 max-md:right-12 max-md:gap-1">
             {isAdminMode && (
               <>
                 {isEditing ? (
                   <>
                     <button
                       onClick={handleCancel}
-                      className="px-3 py-1.5 text-black/70 hover:text-black transition-colors border border-gray-300 rounded-lg text-sm"
+                      className="px-2 md:px-3 py-1 md:py-1.5 text-black/70 hover:text-black transition-colors border border-gray-300 rounded-lg text-xs md:text-sm"
                     >
                       {t('coreValues.cancel')}
                     </button>
                     <button
                       onClick={handleSave}
-                      className="px-3 py-1.5 bg-teal-500 hover:bg-teal-600 text-white rounded-lg flex items-center gap-1 transition-colors text-sm"
+                      className="px-2 md:px-3 py-1 md:py-1.5 bg-teal-500 hover:bg-teal-600 text-white rounded-lg flex items-center gap-1 transition-colors text-xs md:text-sm"
                     >
-                      <Save size={16} />
+                      <Save size={14} className="md:w-4 md:h-4" />
                       {t('coreValues.save')}
                     </button>
                   </>
                 ) : (
                   <button
                     onClick={() => setIsEditing(true)}
-                    className="px-3 py-1.5 bg-blue-500 hover:bg-blue-600 text-white rounded-lg flex items-center gap-1 transition-colors text-sm"
+                    className="px-2 md:px-3 py-1 md:py-1.5 bg-blue-500 hover:bg-blue-600 text-white rounded-lg flex items-center gap-1 transition-colors text-xs md:text-sm"
                   >
-                    <Edit2 size={16} />
+                    <Edit2 size={14} className="md:w-4 md:h-4" />
                     {t('coreValues.edit')}
                   </button>
                 )}
@@ -180,63 +180,68 @@ export function CoreValuesModal({ isOpen, onClose }: CoreValuesModalProps) {
             )}
             <button
               onClick={() => setIsAdminMode(!isAdminMode)}
-              className={`p-2 rounded-lg transition-colors ${
+              className={`p-1.5 md:p-2 rounded-lg transition-colors ${
                 isAdminMode
                   ? 'bg-orange-500 text-white'
                   : 'text-black/40 hover:text-black/70'
               }`}
               title="Admin Mode"
             >
-              <Settings size={18} />
+              <Settings size={16} className="md:w-[18px] md:h-[18px]" />
             </button>
           </div>
 
           <button
             onClick={onClose}
-            className="absolute right-4 top-3 text-black/60 hover:text-black transition-colors"
+            className="absolute right-3 md:right-4 top-3 text-black/60 hover:text-black transition-colors"
           >
-            <X size={22} />
+            <X size={20} className="md:w-[22px] md:h-[22px]" />
           </button>
         </div>
 
-        {/* Content - 4 Columns Layout */}
+        {/* Content - Responsive Grid Layout */}
         <div className="flex-1 overflow-hidden bg-white">
-          <div className="h-full grid grid-cols-4 gap-0">
+          <div className="h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
             {(isEditing ? editingValues : coreValues).map((value, index) => {
               const Icon = value.icon;
               const isLast = index === coreValues.length - 1;
               
+              // Border logic for responsive layout
+              // Mobile (1 col): bottom border for items 0,1,2 (not last)
+              // Tablet (2 cols): right border for left column (0,2), bottom border for first row (0,1)
+              // Desktop (4 cols): right border for items 0,1,2 (not last)
+              const borderClasses = [
+                !isLast ? 'border-b md:border-b-0' : '', // Mobile: bottom border for all except last
+                (index === 0 || index === 2) ? 'md:border-r' : '', // Tablet: right border for left column
+                (index < 2) ? 'md:border-b lg:border-b-0' : '', // Tablet: bottom border for first row
+                !isLast ? 'lg:border-r' : '', // Desktop: right border for all except last
+              ].filter(Boolean).join(' ');
+              
               return (
                 <div
                   key={value.id}
-                  className={`${!isLast ? 'border-r border-gray-200' : ''} px-6 py-6 flex flex-col justify-start overflow-y-auto bg-white`}
+                  className={`${borderClasses} border-gray-200 px-4 md:px-6 py-4 md:py-6 flex flex-col justify-start overflow-y-auto bg-white`}
                 >
                   {/* Header with Icon, Number and Title */}
-                  <div className="mb-4">
-                    <div className="flex items-start justify-center gap-2 mb-3">
-                      <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-md flex-shrink-0 border border-gray-200">
-                        <Icon className={value.iconColor.replace('text-', 'text-')} size={20} strokeWidth={1.8} />
-                      </div>
-                      <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-sm flex-shrink-0 border border-gray-200">
-                        <span className="text-black text-xs">{value.id}</span>
-                      </div>
+                  <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-md flex-shrink-0">
+                      <Icon className={`${value.iconColor.replace('text-', 'text-')} w-5 h-5 md:w-6 md:h-6`} strokeWidth={1.8} />
                     </div>
-                    
-                    {/* Title */}
-                    <div className="w-full">
-                      {isEditing ? (
-                        <input
-                          type="text"
-                          value={value.title}
-                          onChange={(e) => handleFieldChange(value.id, 'title', e.target.value)}
-                          className="w-full text-center text-black bg-white px-2 py-1.5 rounded-lg border border-gray-300 text-sm"
-                        />
-                      ) : (
-                        <h3 className="text-center text-black">
-                          {'translationKeys' in value ? t(value.translationKeys.titleKey) : value.title}
-                        </h3>
-                      )}
+                    <div className="w-6 h-6 md:w-7 md:h-7 bg-white rounded-full flex items-center justify-center shadow-sm flex-shrink-0">
+                      <span className="text-black text-xs">{value.id}</span>
                     </div>
+                    {isEditing ? (
+                      <input
+                        type="text"
+                        value={value.title}
+                        onChange={(e) => handleFieldChange(value.id, 'title', e.target.value)}
+                        className="flex-1 text-black bg-white px-2 py-1.5 rounded-lg border border-gray-300 text-sm"
+                      />
+                    ) : (
+                      <h3 className="text-black flex-1 text-sm md:text-base">
+                        {'translationKeys' in value ? t(value.translationKeys.titleKey) : value.title}
+                      </h3>
+                    )}
                   </div>
 
                   {/* Description */}
@@ -248,7 +253,7 @@ export function CoreValuesModal({ isOpen, onClose }: CoreValuesModalProps) {
                         className="w-full text-black bg-white px-2 py-1.5 rounded-lg border border-gray-300 min-h-[60px] resize-none text-xs"
                       />
                     ) : (
-                      <p className="text-black text-xs leading-relaxed">
+                      <p className="text-black text-sm leading-relaxed">
                         <strong>{t('coreValues.label')}</strong> {'translationKeys' in value ? t(value.translationKeys.descKey) : value.description}
                       </p>
                     )}
@@ -263,7 +268,7 @@ export function CoreValuesModal({ isOpen, onClose }: CoreValuesModalProps) {
                         className="w-full text-black/80 bg-white px-2 py-1.5 rounded-lg border border-gray-300 min-h-[60px] resize-none text-xs"
                       />
                     ) : (
-                      <p className="text-black/80 text-xs leading-relaxed">
+                      <p className="text-black/80 text-sm leading-relaxed">
                         {'translationKeys' in value ? t(value.translationKeys.detailKey) : value.details}
                       </p>
                     )}

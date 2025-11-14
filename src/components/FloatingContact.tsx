@@ -37,7 +37,7 @@ export function FloatingContact() {
         animate={{ scale: 1 }}
         transition={{ delay: 1, type: 'spring', stiffness: 200 }}
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-40 bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-500 dark:to-blue-600 light:from-blue-600 light:to-blue-700 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-full p-3 sm:p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group border-2 border-sky-300 dark:border-sky-400"
       >
         <motion.div
           animate={{ 
@@ -49,11 +49,11 @@ export function FloatingContact() {
             repeatType: 'reverse',
           }}
         >
-          <MessageCircle size={28} className="group-hover:rotate-12 transition-transform" />
+          <MessageCircle size={24} className="sm:w-7 sm:h-7 text-sky-500 dark:text-sky-400 group-hover:rotate-12 transition-transform" />
         </motion.div>
         
         {/* Pulse animation */}
-        <span className="absolute inset-0 rounded-full bg-blue-500 animate-ping opacity-20"></span>
+        <span className="absolute inset-0 rounded-full bg-sky-300 dark:bg-sky-400 animate-ping opacity-20"></span>
       </motion.button>
 
       {/* Modal */}
@@ -74,7 +74,7 @@ export function FloatingContact() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="fixed bottom-6 right-6 z-50 w-[90vw] max-w-md"
+              className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[90vw] max-w-md"
             >
               <div className="bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-900 dark:to-slate-800 light:from-white light:to-gray-50 rounded-2xl shadow-2xl border border-blue-500/30 dark:border-blue-500/30 light:border-blue-200 overflow-hidden">
                 {/* Header */}
