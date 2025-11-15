@@ -349,6 +349,8 @@ export const en: Translations = {
   'company.tagline': 'Smart Living Solutions',
   'company.description': 'Leading AI platform delivering intelligent solutions for households and businesses.',
   'company.info.heading': 'Company Information',
+  'company.info.address.label': 'Address',
+  'company.info.address.value': 'No. 6 Tran Van Can, Vo Cuong, Bac Ninh',
   'company.connect': 'Connect with us:',
   'company.copyright': '&copy; 2025 HOME.AI. All rights reserved.',
   'company.powered': 'Powered by AI Technology',

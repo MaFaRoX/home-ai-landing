@@ -1,33 +1,18 @@
 ﻿import { useState } from 'react';
-import { MessageCircle, X, Send, Phone, MessageSquare } from 'lucide-react';
+import { MessageCircle, X } from 'lucide-react';
 import { useLanguage } from './LanguageContext';
 import { motion, AnimatePresence } from 'motion/react';
-import { toast } from 'sonner';
 
 export function FloatingContact() {
   const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
-  const [phone, setPhone] = useState('');
-  const [message, setMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!phone || !message) {
-      toast.error(t('floatingContact.error'));
-      return;
-    }
-
-    // Simulate sending message (replace with actual API call)
-    console.log('Contact submission:', { phone, message });
-    
-    toast.success(t('floatingContact.success'));
-    
-    // Reset form
-    setPhone('');
-    setMessage('');
-    setIsOpen(false);
-  };
+  // Gmail Icon Component
+  const GmailIcon = ({ className }: { className?: string }) => (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+      <path d="M24 4.5v15c0 .85-.65 1.5-1.5 1.5H21V7.387l-9 6.563-9-6.563V21H1.5C.65 21 0 20.35 0 19.5v-15c0-.425.162-.8.431-1.068C.7 3.16 1.076 3 1.5 3H2l10 7.25L22 3h.5c.425 0 .8.162 1.069.432.27.268.431.643.431 1.068z"/>
+    </svg>
+  );
 
   return (
     <>
@@ -74,72 +59,56 @@ export function FloatingContact() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 w-[calc(100vw-2rem)] sm:w-[90vw] max-w-md"
+              className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50"
+              onClick={(e) => e.stopPropagation()}
             >
-              <div className="bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-900 dark:to-slate-800 light:from-white light:to-gray-50 rounded-2xl shadow-2xl border border-blue-500/30 dark:border-blue-500/30 light:border-blue-200 overflow-hidden">
+              <div className="bg-gradient-to-br from-slate-900 to-slate-800 dark:from-slate-900 dark:to-slate-800 light:from-white light:to-gray-50 rounded-2xl shadow-2xl border border-blue-500/30 dark:border-blue-500/30 light:border-blue-200 overflow-hidden p-4">
                 {/* Header */}
-                <div className="bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-500 dark:to-blue-600 light:from-blue-600 light:to-blue-700 p-6 relative">
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    className="absolute top-4 right-4 text-white hover:bg-white/20 rounded-full p-2 transition-colors"
-                  >
-                    <X size={20} />
-                  </button>
-                  
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-2">
-                      <MessageCircle size={24} className="text-white" />
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-blue-500/20 backdrop-blur-sm rounded-full p-2">
+                      <MessageCircle size={20} className="text-blue-400 dark:text-blue-400 light:text-blue-600" />
                     </div>
-                    <h3 className="text-white">
+                    <h3 className="text-white dark:text-white light:text-gray-900 text-sm font-semibold">
                       {t('floatingContact.title')}
                     </h3>
                   </div>
-                  <p className="text-blue-100 dark:text-blue-100 light:text-white/90">
-                    {t('floatingContact.subtitle')}
-                  </p>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="text-gray-400 dark:text-gray-400 light:text-gray-600 hover:text-white dark:hover:text-white light:hover:text-gray-900 rounded-full p-1 transition-colors"
+                  >
+                    <X size={18} />
+                  </button>
                 </div>
 
-                {/* Form */}
-                <form onSubmit={handleSubmit} className="p-6 space-y-4">
-                  {/* Phone Input */}
-                  <div>
-                    <label className="flex items-center gap-2 text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
-                      <Phone size={18} className="text-blue-400 dark:text-blue-400 light:text-blue-600" />
-                      {t('floatingContact.phone')}
-                    </label>
-                    <input
-                      type="tel"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      placeholder={t('floatingContact.phonePlaceholder')}
-                      className="w-full px-4 py-3 bg-slate-800/50 dark:bg-slate-800/50 light:bg-gray-100 border border-gray-700 dark:border-gray-700 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-500 dark:placeholder-gray-500 light:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                    />
-                  </div>
-
-                  {/* Message Input */}
-                  <div>
-                    <label className="flex items-center gap-2 text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
-                      <MessageSquare size={18} className="text-blue-400 dark:text-blue-400 light:text-blue-600" />
-                      {t('floatingContact.message')}
-                    </label>
-                    <textarea
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                      placeholder={t('floatingContact.messagePlaceholder')}
-                      rows={4}
-                      className="w-full px-4 py-3 bg-slate-800/50 dark:bg-slate-800/50 light:bg-gray-100 border border-gray-700 dark:border-gray-700 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-500 dark:placeholder-gray-500 light:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
-                    />
-                  </div>
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    className="w-full bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-500 dark:to-blue-600 light:from-blue-600 light:to-blue-700 text-white py-3 rounded-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group"
+                {/* Buttons */}
+                <div className="flex flex-col gap-3">
+                  {/* Gmail Button */}
+                  <motion.a
+                    href="https://mail.google.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full bg-gradient-to-r from-red-500 to-red-600 dark:from-red-500 dark:to-red-600 light:from-red-600 light:to-red-700 text-white py-3 px-4 rounded-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3 group"
                   >
-                    <Send size={18} className="group-hover:translate-x-1 transition-transform" />
-                    {t('floatingContact.send')}
-                  </button>
-                </form>
+                    <GmailIcon className="w-5 h-5" />
+                    <span className="font-medium">Gmail</span>
+                  </motion.a>
+
+                  {/* Zalo Button */}
+                  <motion.a
+                    href="https://chat.zalo.me"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-500 dark:to-blue-600 light:from-blue-600 light:to-blue-700 text-white py-3 px-4 rounded-lg hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-3 group"
+                  >
+                    <MessageCircle size={20} />
+                    <span className="font-medium">Zalo</span>
+                  </motion.a>
+                </div>
               </div>
             </motion.div>
           </>

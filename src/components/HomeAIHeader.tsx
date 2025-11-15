@@ -56,9 +56,12 @@ export function HomeAIHeader() {
         transition={{ duration: 0.8, delay: 0.5 }}
         className="absolute left-2 sm:left-4 md:left-6 lg:left-8 top-2 z-10"
       >
-        <motion.div
+        <motion.a
+          href="https://gia-pha.home-ai.com.vn/"
+          target="_blank"
+          rel="noopener noreferrer"
           whileHover={{ scale: 1.03, x: 5 }}
-          className="relative group cursor-pointer"
+          className="relative group cursor-pointer block"
         >
           {/* Glow Effect */}
           <motion.div
@@ -107,10 +110,14 @@ export function HomeAIHeader() {
             </div>
 
             {/* CTA Button */}
-            <motion.button
+            <motion.a
+              href="https://gia-pha.home-ai.com.vn/"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 dark:from-emerald-500 dark:to-teal-500 light:from-emerald-600 light:to-teal-600 text-white py-1 sm:py-1.5 rounded-lg flex items-center justify-center gap-1 sm:gap-1.5 shadow-lg"
+              onClick={(e) => e.stopPropagation()}
             >
               <span className="text-[9px] sm:text-[10px] md:text-xs" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600 }}>
                 {t('banner.common.explore')}
@@ -121,7 +128,7 @@ export function HomeAIHeader() {
               >
                 <ArrowRight size={10} />
               </motion.div>
-            </motion.button>
+            </motion.a>
 
             {/* Floating Particles */}
             {[...Array(2)].map((_, i) => (
@@ -144,7 +151,7 @@ export function HomeAIHeader() {
               />
             ))}
           </div>
-        </motion.div>
+        </motion.a>
       </motion.div>
 
       {/* RIGHT BANNER - Health Index */}
@@ -154,9 +161,12 @@ export function HomeAIHeader() {
         transition={{ duration: 0.8, delay: 0.5 }}
         className="absolute right-2 sm:right-4 md:right-6 lg:right-8 top-2 z-10"
       >
-        <motion.div
+        <motion.a
+          href="https://health-index.home-ai.com.vn/"
+          target="_blank"
+          rel="noopener noreferrer"
           whileHover={{ scale: 1.03, x: -5 }}
-          className="relative group cursor-pointer"
+          className="relative group cursor-pointer block"
         >
           {/* Glow Effect */}
           <motion.div
@@ -210,10 +220,14 @@ export function HomeAIHeader() {
             </div>
 
             {/* CTA Button */}
-            <motion.button
+            <motion.a
+              href="https://health-index.home-ai.com.vn/"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="w-full bg-gradient-to-r from-rose-500 to-pink-500 dark:from-rose-500 dark:to-pink-500 light:from-rose-600 light:to-pink-600 text-white py-1 sm:py-1.5 rounded-lg flex items-center justify-center gap-1 sm:gap-1.5 shadow-lg"
+              onClick={(e) => e.stopPropagation()}
             >
               <span className="text-[9px] sm:text-[10px] md:text-xs" style={{ fontFamily: "'Rajdhani', sans-serif", fontWeight: 600 }}>
                 {t('banner.common.explore')}
@@ -224,7 +238,7 @@ export function HomeAIHeader() {
               >
                 <ArrowRight size={10} />
               </motion.div>
-            </motion.button>
+            </motion.a>
 
             {/* Heartbeat Line Animation */}
             <div className="absolute bottom-1 left-2 right-2 h-4 opacity-20">
@@ -263,7 +277,7 @@ export function HomeAIHeader() {
               />
             ))}
           </div>
-        </motion.div>
+        </motion.a>
       </motion.div>
 
       {/* Animated Background Particles */}

@@ -17,8 +17,8 @@ export function CompanyFooter() {
     },
     {
       icon: MapPin,
-      label: 'Address',
-      value: 'No. 6 Tran Van Can, Vo Cuong, Bac Ninh',
+      label: t('company.info.address.label'),
+      value: t('company.info.address.value'),
       iconColor: 'text-emerald-400',
       lightIconColor: 'light:text-emerald-600',
       bgColor: 'bg-emerald-500/10',

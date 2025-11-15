@@ -347,6 +347,8 @@ export const vi: Translations = {
   'company.tagline': 'Giải pháp sống thông minh',
   'company.description': 'Nền tảng AI hàng đầu mang đến giải pháp thông minh cho gia đình và doanh nghiệp.',
   'company.info.heading': 'Thông tin doanh nghiệp',
+  'company.info.address.label': 'Địa chỉ',
+  'company.info.address.value': 'Số 6 Trần Văn Cẩn, Võ Cường, Bắc Ninh',
   'company.connect': 'Kết nối với chúng tôi:',
   'company.copyright': '&copy; 2025 HOME.AI. Bảo lưu mọi quyền.',
   'company.powered': 'Vận hành bởi công nghệ AI',
